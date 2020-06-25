@@ -1,46 +1,72 @@
 package br.com.kvm.estoque.modelo;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import br.com.caelum.stella.format.CNPJFormatter;
+import br.com.caelum.stella.validation.CNPJValidator;
+import br.com.caelum.stella.validation.InvalidStateException;
+
+/**
+ * Classe com os dados da empresa do cliente, com validador de CNPJ
+ * 
+ * @Version 1.0
+ * @author Wilker
+ *
+ */
 @Entity
 public class Empresa {
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private  Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String nome;
 	private String cnpj;
-	private List<Predio> predios;
-	
+
+	private boolean validaCNPJ(String cnpj) {
+		CNPJFormatter formatadorCNPJ = new CNPJFormatter();
+		String cnpjSemFormatacao = formatadorCNPJ.unformat(cnpj);
+		
+		CNPJValidator validadorCnpj = new CNPJValidator();
+		try {
+			validadorCnpj.assertValid(cnpjSemFormatacao);
+			return true;
+		} catch (InvalidStateException e) {
+			e.printStackTrace();
+			System.out.println(e);
+			return false;
+		}
+	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getCnpj() {
 		return cnpj;
 	}
+
 	public void setCnpj(String cnpj) {
+
+		validaCNPJ(cnpj);
+
 		this.cnpj = cnpj;
 	}
-	public List<Predio> getPredios() {
-		return predios;
-	}
-	public void setPredios(List<Predio> predios) {
-		this.predios = predios;
-	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -48,9 +74,9 @@ public class Empresa {
 		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((predios == null) ? 0 : predios.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -75,13 +101,9 @@ public class Empresa {
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		if (predios == null) {
-			if (other.predios != null)
-				return false;
-		} else if (!predios.equals(other.predios))
-			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Id: " + this.id + ", Nome: " + this.nome + ", CNPJ: " + this.cnpj + ".";
