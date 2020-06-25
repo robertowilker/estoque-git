@@ -27,7 +27,7 @@ public class EmpresaForm {
 		this.cnpj = cnpj;
 	}
 
-	public Empresa converter() throws Exception{
+	public Empresa converter(){
 
 		return new Empresa(nome, cnpj);
 	}
