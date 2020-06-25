@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -34,5 +35,10 @@ public class EmpresaController {
 		
 		URI uri = uriBuilder.path("/empresa/{id}").buildAndExpand(empresa.getId()).toUri();
 		return ResponseEntity.created(uri).body(new EmpresaDto(empresa));
+	}
+	
+	@GetMapping("/{id}")
+	public void detalhes(@PathVariable Long id) {
+//		Empresa empresa = empresaRepository.findById(id);
 	}
 }
