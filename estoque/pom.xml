@@ -21,6 +21,20 @@
 
 	<dependencies>
 
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/br.com.caelum.stella/caelum-stella-core -->
 		<dependency>
 			<groupId>br.com.caelum.stella</groupId>
