@@ -7,7 +7,6 @@ import javax.persistence.Id;
 
 import br.com.caelum.stella.format.CNPJFormatter;
 import br.com.caelum.stella.validation.CNPJValidator;
-import br.com.caelum.stella.validation.InvalidStateException;
 
 /**
  * Classe com os dados da empresa do cliente, com validador de CNPJ
@@ -25,19 +24,22 @@ public class Empresa {
 	private String nome;
 	private String cnpj;
 
+	public Empresa() {
+	}
+
+	public Empresa(String nome, String cnpj) {
+		validaCNPJ(cnpj);
+		this.nome = nome;
+		this.cnpj = cnpj;
+	}
+
 	private boolean validaCNPJ(String cnpj) {
 		CNPJFormatter formatadorCNPJ = new CNPJFormatter();
 		String cnpjSemFormatacao = formatadorCNPJ.unformat(cnpj);
-		
+
 		CNPJValidator validadorCnpj = new CNPJValidator();
-		try {
-			validadorCnpj.assertValid(cnpjSemFormatacao);
-			return true;
-		} catch (InvalidStateException e) {
-			e.printStackTrace();
-			System.out.println(e);
-			return false;
-		}
+		validadorCnpj.assertValid(cnpjSemFormatacao);
+		return true;
 	}
 
 	public Long getId() {
@@ -61,8 +63,6 @@ public class Empresa {
 	}
 
 	public void setCnpj(String cnpj) {
-
-		validaCNPJ(cnpj);
 
 		this.cnpj = cnpj;
 	}
