@@ -2,14 +2,45 @@ package br.com.kvm.estoque.modelo;
 
 import java.util.List;
 
-public class Andar {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+@Entity
+public class Andar {
+	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@ManyToOne
+	private Predio predio;
 	private int numero;
+	@OneToMany(mappedBy = "andar")
 	private List<Area> areas;
+	@OneToMany(mappedBy = "andar")
 	private List<Bairro> bairros;
+	@OneToMany(mappedBy = "andar")
 	private List<Sala> salas;
 	
+	public Andar() {}
+	
+	public Andar(Long id, Predio predio, int numero, List<Area> areas, List<Bairro> bairros, List<Sala> salas) {
+		this.id = id;
+		this.predio = predio;
+		this.numero = numero;
+		this.areas = areas;
+		this.bairros = bairros;
+		this.salas = salas;
+	}
+
+	public Predio getPredio() {
+		return predio;
+	}
+	public void setPredio(Predio predio) {
+		this.predio = predio;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -51,6 +82,7 @@ public class Andar {
 		result = prime * result + ((bairros == null) ? 0 : bairros.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + numero;
+		result = prime * result + ((predio == null) ? 0 : predio.hashCode());
 		result = prime * result + ((salas == null) ? 0 : salas.hashCode());
 		return result;
 	}
@@ -79,6 +111,11 @@ public class Andar {
 		} else if (!id.equals(other.id))
 			return false;
 		if (numero != other.numero)
+			return false;
+		if (predio == null) {
+			if (other.predio != null)
+				return false;
+		} else if (!predio.equals(other.predio))
 			return false;
 		if (salas == null) {
 			if (other.salas != null)

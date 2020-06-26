@@ -1,9 +1,12 @@
 package br.com.kvm.estoque.modelo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import br.com.caelum.stella.format.CNPJFormatter;
 import br.com.caelum.stella.validation.CNPJValidator;
@@ -23,6 +26,8 @@ public class Empresa {
 	private Long id;
 	private String nome;
 	private String cnpj;
+	@OneToMany(mappedBy = "empresa")
+	private List<Predio> predios;
 
 	public Empresa() {
 	}

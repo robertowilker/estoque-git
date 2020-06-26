@@ -1,18 +1,55 @@
 package br.com.kvm.estoque.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Predio {
 	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@ManyToOne
 	private Empresa empresa;
 	private String nome;
-	private String estado;
 	private String cep;
-	private String endereco;
+	@OneToOne(mappedBy = "predio")
+	private Endereco endereco;
 	private int numeroDoEndereco;
-	private List<Andar> andares;
+	@OneToMany(mappedBy = "predio")
+	private List<Andar> andares = new ArrayList<>();
 	
+	public Predio() {}
+	
+	public Predio(String nome, String cep, Endereco endereco, int numeroDoEndereco) {
+		this.nome = nome;
+		this.endereco = endereco;
+		this.numeroDoEndereco = numeroDoEndereco;
+	}
+
+	public Predio(Empresa empresa, String nome, Endereco endereco, int numeroDoEndereco, List<Andar> andares) {
+		this.empresa = empresa;
+		this.nome = nome;
+		this.endereco = endereco;
+		this.numeroDoEndereco = numeroDoEndereco;
+		this.andares = andares;
+	}
+	
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -31,22 +68,10 @@ public class Predio {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getEstado() {
-		return estado;
-	}
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-	public String getCep() {
-		return cep;
-	}
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-	public String getEndereco() {
+	public Endereco getEndereco() {
 		return endereco;
 	}
-	public void setEndereco(String endereco) {
+	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
 	public int getNumeroDoEndereco() {
@@ -66,14 +91,16 @@ public class Predio {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((andares == null) ? 0 : andares.hashCode());
 		result = prime * result + ((cep == null) ? 0 : cep.hashCode());
+		result = prime * result + ((empresa == null) ? 0 : empresa.hashCode());
 		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
-		result = prime * result + ((estado == null) ? 0 : estado.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + numeroDoEndereco;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -83,20 +110,25 @@ public class Predio {
 		if (getClass() != obj.getClass())
 			return false;
 		Predio other = (Predio) obj;
+		if (andares == null) {
+			if (other.andares != null)
+				return false;
+		} else if (!andares.equals(other.andares))
+			return false;
 		if (cep == null) {
 			if (other.cep != null)
 				return false;
 		} else if (!cep.equals(other.cep))
 			return false;
+		if (empresa == null) {
+			if (other.empresa != null)
+				return false;
+		} else if (!empresa.equals(other.empresa))
+			return false;
 		if (endereco == null) {
 			if (other.endereco != null)
 				return false;
 		} else if (!endereco.equals(other.endereco))
-			return false;
-		if (estado == null) {
-			if (other.estado != null)
-				return false;
-		} else if (!estado.equals(other.estado))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -112,9 +144,10 @@ public class Predio {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
-		return "Id: " + this.id + ", Empresa: " + this.empresa.getNome() + ", Nome do Predio: " + this.nome +
-				", Cep: " + this.cep + ".";
+		return "Id: " + this.id + ", Empresa: " + this.empresa.getNome() + 
+				", Nome do Predio: " + this.nome + ".";
 	}
 }
