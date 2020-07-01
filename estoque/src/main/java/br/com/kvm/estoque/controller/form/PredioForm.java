@@ -3,22 +3,26 @@ package br.com.kvm.estoque.controller.form;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import br.com.kvm.estoque.modelo.Endereco;
 import br.com.kvm.estoque.modelo.Predio;
 
 public class PredioForm {
-
+	
 	@NotEmpty
 	private String nome;
 	@NotEmpty
 	private String cep;
-	private String endereco;
+	@NotEmpty
+	private String rua;
+	@NotEmpty
+	private String bairro;
+	@NotEmpty
+	private String complemento;
 	@NotNull
 	private int numeroDoEndereco;
 	
 	public Predio converter() {
-		Endereco endereco = new Endereco().buscaEnderecoPeloCEP(cep);
-		Predio predio = new Predio(nome, cep, endereco, numeroDoEndereco);
+		Predio predio = new Predio(nome, cep, rua, bairro, complemento,
+				numeroDoEndereco);
 		return predio;
 	}
 	
@@ -34,11 +38,11 @@ public class PredioForm {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getEndereco() {
-		return endereco;
+	public String getRua() {
+		return rua;
 	}
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	public void setRua(String rua) {
+		this.rua = rua;
 	}
 	public int getNumeroDoEndereco() {
 		return numeroDoEndereco;
