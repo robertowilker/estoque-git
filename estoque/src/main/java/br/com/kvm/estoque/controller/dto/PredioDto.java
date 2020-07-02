@@ -12,7 +12,6 @@ public class PredioDto {
 	private Empresa empresa;
 	private String nome;
 	private String cep;
-	private String endereco;
 	private int numeroDoEndereco;
 	private List<Andar>andares;
 	
@@ -32,9 +31,6 @@ public class PredioDto {
 	}
 	public String getCep() {
 		return cep;
-	}
-	public String getEndereco() {
-		return endereco;
 	}
 	public int getNumeroDoEndereco() {
 		return numeroDoEndereco;

@@ -27,8 +27,9 @@ public class Predio {
 	
 	public Predio() {}
 	
-	public Predio(String nome, String cep, String rua, String bairro,
+	public Predio(Empresa empresa, String nome, String cep, String rua, String bairro,
 			String complemento, int numeroDoEndereco) {
+		this.empresa = empresa;
 		this.nome = nome;
 		this.cep = cep;
 		this.rua = rua;

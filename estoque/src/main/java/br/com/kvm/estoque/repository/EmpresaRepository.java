@@ -6,4 +6,6 @@ import br.com.kvm.estoque.modelo.Empresa;
 
 public interface EmpresaRepository extends JpaRepository<Empresa, Long>{
 
+	Empresa findByNome(String nomeEmpresa);
+
 }

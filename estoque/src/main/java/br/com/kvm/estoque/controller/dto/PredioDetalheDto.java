@@ -2,13 +2,14 @@ package br.com.kvm.estoque.controller.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.kvm.estoque.modelo.Predio;
 
 public class PredioDetalheDto {
 
 	private Long id;
-	private String empresa;
+	private String nomeEempresa;
 	private String nome;
 	private String cep;
 	private String rua;
@@ -19,13 +20,14 @@ public class PredioDetalheDto {
 	
 	public PredioDetalheDto(Predio predio) {
 		this.id = predio.getId();
-		this.empresa = predio.getEmpresa().getNome();
+		this.nomeEempresa = predio.getEmpresa().getNome();
 		this.cep = predio.getCep();
 		this.rua = predio.getRua();
 		this.bairro = predio.getBairro();
 		this.complemento = predio.getComplemento();
 		this.numeroDoEndereco = predio.getNumeroDoEndereco();
 		this.andares = new ArrayList<>();
+		this.andares.addAll(predio.getAndares().stream().map(AndarDto::new).collect(Collectors.toList()));
 	}
 	
 	public String getRua() {
@@ -41,7 +43,7 @@ public class PredioDetalheDto {
 		return id;
 	}
 	public String getEmpresa() {
-		return empresa;
+		return nomeEempresa;
 	}
 	public String getNome() {
 		return nome;
