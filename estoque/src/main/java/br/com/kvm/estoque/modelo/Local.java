@@ -13,6 +13,21 @@ public class Local {
 	private String predio;
 	private int numeroDoAndar;
 	
+	public Local() {}
+	
+	public Local(String nomeDoLocal, String predio, int numeroDoAndar) {
+		this.nomeDoLocal = nomeDoLocal;
+		this.predio = predio;
+		this.numeroDoAndar = numeroDoAndar;
+	}
+	
+	public Local(Long id, String nomeDoLocal, String predio, int numeroDoAndar) {
+		this.id = id;
+		this.nomeDoLocal = nomeDoLocal;
+		this.predio = predio;
+		this.numeroDoAndar = numeroDoAndar;
+	}
+
 	public Long getId() {
 		return id;
 	}
