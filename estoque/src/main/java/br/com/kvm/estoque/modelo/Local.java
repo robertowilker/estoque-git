@@ -3,25 +3,28 @@ package br.com.kvm.estoque.modelo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Local {
-
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nomeDoLocal;
-	private String predio;
+	@ManyToOne
+	private Predio predio;
 	private int numeroDoAndar;
 	
 	public Local() {}
 	
-	public Local(String nomeDoLocal, String predio, int numeroDoAndar) {
+	public Local(String nomeDoLocal, Predio predio, int numeroDoAndar) {
 		this.nomeDoLocal = nomeDoLocal;
 		this.predio = predio;
 		this.numeroDoAndar = numeroDoAndar;
 	}
 	
-	public Local(Long id, String nomeDoLocal, String predio, int numeroDoAndar) {
+	public Local(Long id, String nomeDoLocal, Predio predio, int numeroDoAndar) {
 		this.id = id;
 		this.nomeDoLocal = nomeDoLocal;
 		this.predio = predio;
@@ -40,10 +43,10 @@ public class Local {
 	public void setNomeDoLocal(String nomeDoLocal) {
 		this.nomeDoLocal = nomeDoLocal;
 	}
-	public String getPredio() {
+	public Predio getPredio() {
 		return predio;
 	}
-	public void setPredio(String predio) {
+	public void setPredio(Predio predio) {
 		this.predio = predio;
 	}
 	public int getNumeroDoAndar() {
@@ -63,6 +66,7 @@ public class Local {
 		result = prime * result + ((predio == null) ? 0 : predio.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -91,9 +95,10 @@ public class Local {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Id: " + this.id + ", Nome do local: " + this.nomeDoLocal +
-				", Predio: " + this.predio + ", Andar: " + this.numeroDoAndar + ".";
+				 ", Andar: " + this.numeroDoAndar + ".";
 	}
 }

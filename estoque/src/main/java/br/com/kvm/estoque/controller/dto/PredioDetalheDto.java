@@ -16,7 +16,7 @@ public class PredioDetalheDto {
 	private String bairro;
 	private String complemento;
 	private int numeroDoEndereco;
-	private List<AndarDto> andares;
+	private List<LocalDto> Locais;
 	
 	public PredioDetalheDto(Predio predio) {
 		this.id = predio.getId();
@@ -26,8 +26,8 @@ public class PredioDetalheDto {
 		this.bairro = predio.getBairro();
 		this.complemento = predio.getComplemento();
 		this.numeroDoEndereco = predio.getNumeroDoEndereco();
-		this.andares = new ArrayList<>();
-		this.andares.addAll(predio.getAndares().stream().map(AndarDto::new).collect(Collectors.toList()));
+		this.Locais = new ArrayList<>();
+		this.Locais.addAll(predio.getLocais().stream().map(LocalDto::new).collect(Collectors.toList()));
 	}
 	
 	public String getRua() {
@@ -54,7 +54,7 @@ public class PredioDetalheDto {
 	public int getNumeroDoEndereco() {
 		return numeroDoEndereco;
 	}
-	public List<AndarDto> getAndares() {
-		return andares;
+	public List<LocalDto> getLocais() {
+		return Locais;
 	}
 }

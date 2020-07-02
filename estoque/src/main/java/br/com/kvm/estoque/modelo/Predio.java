@@ -100,10 +100,10 @@ public class Predio {
 	public void setNumeroDoEndereco(int numeroDoEndereco) {
 		this.numeroDoEndereco = numeroDoEndereco;
 	}
-	public List<Local> getAndares() {
+	public List<Local> getLocais() {
 		return locais;
 	}
-	public void setAndares(List<Local> locais) {
+	public void setLocais(List<Local> locais) {
 		this.locais = locais;
 	}
 	
