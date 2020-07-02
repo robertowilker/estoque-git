@@ -23,7 +23,7 @@ public class Predio {
 	private String complemento;
 	private int numeroDoEndereco;
 	@OneToMany(mappedBy = "predio")
-	private List<Andar> andares;
+	private List<Local> locais;
 	
 	public Predio() {}
 	
@@ -39,8 +39,7 @@ public class Predio {
 	}
 
 	public Predio(Long id, Empresa empresa, String nome, String cep, String rua, String bairro, String complemento,
-			int numeroDoEndereco, List<Andar> andares) {
-		super();
+			int numeroDoEndereco, List<Local> locais) {
 		this.id = id;
 		this.empresa = empresa;
 		this.nome = nome;
@@ -49,7 +48,7 @@ public class Predio {
 		this.bairro = bairro;
 		this.complemento = complemento;
 		this.numeroDoEndereco = numeroDoEndereco;
-		this.andares = andares;
+		this.locais = locais;
 	}
 
 	public String getRua() {
@@ -101,23 +100,23 @@ public class Predio {
 	public void setNumeroDoEndereco(int numeroDoEndereco) {
 		this.numeroDoEndereco = numeroDoEndereco;
 	}
-	public List<Andar> getAndares() {
-		return andares;
+	public List<Local> getAndares() {
+		return locais;
 	}
-	public void setAndares(List<Andar> andares) {
-		this.andares = andares;
+	public void setAndares(List<Local> locais) {
+		this.locais = locais;
 	}
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((andares == null) ? 0 : andares.hashCode());
 		result = prime * result + ((bairro == null) ? 0 : bairro.hashCode());
 		result = prime * result + ((cep == null) ? 0 : cep.hashCode());
 		result = prime * result + ((complemento == null) ? 0 : complemento.hashCode());
 		result = prime * result + ((empresa == null) ? 0 : empresa.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((locais == null) ? 0 : locais.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + numeroDoEndereco;
 		result = prime * result + ((rua == null) ? 0 : rua.hashCode());
@@ -133,11 +132,6 @@ public class Predio {
 		if (getClass() != obj.getClass())
 			return false;
 		Predio other = (Predio) obj;
-		if (andares == null) {
-			if (other.andares != null)
-				return false;
-		} else if (!andares.equals(other.andares))
-			return false;
 		if (bairro == null) {
 			if (other.bairro != null)
 				return false;
@@ -162,6 +156,11 @@ public class Predio {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (locais == null) {
+			if (other.locais != null)
+				return false;
+		} else if (!locais.equals(other.locais))
 			return false;
 		if (nome == null) {
 			if (other.nome != null)
