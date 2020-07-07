@@ -1,33 +1,34 @@
 package br.com.kvm.estoque.controller.dto;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import br.com.kvm.estoque.modelo.Local;
 
-public class LocalDto {
+public class LocalDetalheDto {
 
 	private Long id;
 	private String nomeDoLocal;
+	private String predio;
 	private int numeroDoAndar;
 	
-	public LocalDto(Local local) {
+	public LocalDetalheDto(Local local) {
 		this.id = local.getId();
 		this.nomeDoLocal = local.getNomeDoLocal();
+		this.predio = local.getPredio().getNome();
 		this.numeroDoAndar = local.getNumeroDoAndar();
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
+
 	public String getNomeDoLocal() {
 		return nomeDoLocal;
 	}
-	public int getNumeroDoAndar() {
-		return numeroDoAndar;
+
+	public String getPredio() {
+		return predio;
 	}
 
-	public static List<LocalDto> converter(List<Local> locais) {
-		return locais.stream().map(LocalDto::new).collect(Collectors.toList());
+	public int getNumeroDoAndar() {
+		return numeroDoAndar;
 	}
 }

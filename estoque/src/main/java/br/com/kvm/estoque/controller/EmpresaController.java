@@ -49,9 +49,7 @@ public class EmpresaController {
 	@PostMapping
 	@Transactional
 	public ResponseEntity<EmpresaDto> cadastrar(@RequestBody @Valid EmpresaForm form, UriComponentsBuilder uriBuilder){
-		Empresa empresa;
-
-		empresa = form.converter();
+		Empresa empresa = form.converter();
 
 		empresaRepository.save(empresa);
 

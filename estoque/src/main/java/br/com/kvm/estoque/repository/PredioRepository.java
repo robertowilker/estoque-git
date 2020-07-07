@@ -6,4 +6,6 @@ import br.com.kvm.estoque.modelo.Predio;
 
 public interface PredioRepository extends JpaRepository<Predio, Long>{
 
+	Predio findByNome(String predio);
+
 }

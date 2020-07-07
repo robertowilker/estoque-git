@@ -30,7 +30,7 @@ public class Local {
 		this.predio = predio;
 		this.numeroDoAndar = numeroDoAndar;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
