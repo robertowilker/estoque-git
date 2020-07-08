@@ -1,7 +1,13 @@
 package br.com.kvm.estoque.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+@Entity
 public class Tv {
 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String marca;
 	private String modelo;
