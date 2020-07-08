@@ -14,6 +14,15 @@ public class Tv {
 	private int polegadas;
 	private String numeroDeSerie;
 	
+	public Tv() {}
+	
+	public Tv(String marca, String modelo, int polegadas, String numeroDeSerie) {
+		this.marca = marca;
+		this.modelo = modelo;
+		this.polegadas = polegadas;
+		this.numeroDeSerie = numeroDeSerie;
+	}
+
 	public Long getId() {
 		return id;
 	}
