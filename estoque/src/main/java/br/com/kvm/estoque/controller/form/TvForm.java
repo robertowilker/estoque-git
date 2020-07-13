@@ -3,7 +3,7 @@ package br.com.kvm.estoque.controller.form;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import br.com.kvm.estoque.modelo.Tv;
+import br.com.kvm.estoque.modelo.ativo.Tv;
 
 public class TvForm {
 	

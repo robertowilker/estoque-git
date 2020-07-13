@@ -3,7 +3,7 @@ package br.com.kvm.estoque.controller.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.kvm.estoque.modelo.Tv;
+import br.com.kvm.estoque.modelo.ativo.Tv;
 
 public class TvDto {
 

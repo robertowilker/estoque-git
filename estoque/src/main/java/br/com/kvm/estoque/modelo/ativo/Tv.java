@@ -1,4 +1,4 @@
-package br.com.kvm.estoque.modelo;
+package br.com.kvm.estoque.modelo.ativo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

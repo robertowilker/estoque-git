@@ -21,7 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.kvm.estoque.controller.dto.TvDto;
 import br.com.kvm.estoque.controller.form.TvAtualizaForm;
 import br.com.kvm.estoque.controller.form.TvForm;
-import br.com.kvm.estoque.modelo.Tv;
+import br.com.kvm.estoque.modelo.ativo.Tv;
 import br.com.kvm.estoque.repository.TvRepository;
 
 @RestController

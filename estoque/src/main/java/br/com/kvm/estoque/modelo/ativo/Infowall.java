@@ -1,4 +1,4 @@
-package br.com.kvm.estoque.modelo;
+package br.com.kvm.estoque.modelo.ativo;
 
 public class Infowall {
 
@@ -8,6 +8,16 @@ public class Infowall {
 	private int quantidadeDeMaquinas;
 	private String tipoDeMaquinaInstalada;
 	
+	public Infowall() {}
+	
+	public Infowall(String modeloDaBaseDoInfowall, String modeloDeDisplayInstalado, int quantidadeDeMaquinas,
+			String tipoDeMaquinaInstalada) {
+		this.modeloDaBaseDoInfowall = modeloDaBaseDoInfowall;
+		this.modeloDeDisplayInstalado = modeloDeDisplayInstalado;
+		this.quantidadeDeMaquinas = quantidadeDeMaquinas;
+		this.tipoDeMaquinaInstalada = tipoDeMaquinaInstalada;
+	}
+
 	public Long getId() {
 		return id;
 	}
