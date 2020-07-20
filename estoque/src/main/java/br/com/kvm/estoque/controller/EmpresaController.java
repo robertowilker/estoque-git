@@ -7,6 +7,9 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,7 +44,8 @@ public class EmpresaController {
 	private EmpresaRepository empresaRepository;
 
 	@GetMapping
-	public List<EmpresaDto> lista() {
+	public List<EmpresaDto> lista(@PageableDefault(sort = "id",
+	direction = Direction.ASC) Pageable paginacao) {
 		List<Empresa> empresas = empresaRepository.findAll();
 		return EmpresaDto.converter(empresas);
 	}
