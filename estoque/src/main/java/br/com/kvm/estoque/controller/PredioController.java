@@ -7,6 +7,9 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,7 +41,8 @@ public class PredioController {
 	private PredioRepository predioRepository;
 	
 	@GetMapping
-	public List<PredioDto> lista() {
+	public List<PredioDto> lista(@PageableDefault(sort = "id",
+			direction = Direction.ASC) Pageable paginacao) {
 		List<Predio> predios = predioRepository.findAll();
 		return PredioDto.converter(predios);
 	}

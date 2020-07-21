@@ -4,10 +4,15 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,11 +37,13 @@ public class ColaboradorController {
 	private ColaboradorRepository colaboradorRepository;
 	
 	@GetMapping
-	public List<ColaboradorDto> lista() {
+	public List<ColaboradorDto> lista(@PageableDefault(sort = "id", 
+		direction = Direction.ASC) Pageable paginacao) {
 		List<Colaborador> listaColaboradores = colaboradorRepository.findAll();
 		return ColaboradorDto.converter(listaColaboradores);
 	}
 	
+	@Transactional
 	@PostMapping
 	public ResponseEntity<ColaboradorDto> cadastra(@RequestBody @Valid ColaboradorForm form,
 			UriComponentsBuilder uriBuilder) {
@@ -60,6 +67,7 @@ public class ColaboradorController {
 		}
 	}
 	
+	@Transactional
 	@PutMapping("{id}")
 	public ResponseEntity<ColaboradorDto> atualiza(@PathVariable Long id, @RequestBody @Valid ColaboradorAtualizaForm form) {
 		Optional<Colaborador> optional = colaboradorRepository.findById(id);
@@ -72,5 +80,16 @@ public class ColaboradorController {
 		}
 	}
 	
-	public void deleta() {}
+	@Transactional
+	@DeleteMapping("{id}")
+	public ResponseEntity<?> deleta(@PathVariable Long id) {
+		Optional<Colaborador> optional = colaboradorRepository.findById(id);
+		
+		if(optional.isPresent()) {
+			colaboradorRepository.delete(optional.get());
+			return ResponseEntity.ok().build();
+		}else {
+			return ResponseEntity.notFound().build();
+		}
+	}
 }
