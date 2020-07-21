@@ -9,6 +9,7 @@ public class Projetor {
 	private String modeloDaLampadaDoProjetor;
 	private String numeroDeSerie;
 	
+	@Deprecated
 	public Projetor() {}
 	
 	public Projetor(Long id, String marca, String modelo, String quantidadeDeHorasDeUsoDaLampadaDoProjetor,

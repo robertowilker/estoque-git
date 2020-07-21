@@ -25,6 +25,7 @@ public class Predio {
 	@OneToMany(mappedBy = "predio")
 	private List<Local> locais;
 	
+	@Deprecated
 	public Predio() {}
 	
 	public Predio(Empresa empresa, String nome, String cep, String rua, String bairro,

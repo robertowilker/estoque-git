@@ -8,6 +8,7 @@ public class Infowall {
 	private int quantidadeDeMaquinas;
 	private String tipoDeMaquinaInstalada;
 	
+	@Deprecated
 	public Infowall() {}
 	
 	public Infowall(String modeloDaBaseDoInfowall, String modeloDeDisplayInstalado, int quantidadeDeMaquinas,

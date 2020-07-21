@@ -16,6 +16,7 @@ public class Local {
 	private Predio predio;
 	private int numeroDoAndar;
 	
+	@Deprecated
 	public Local() {}
 	
 	public Local(String nomeDoLocal, Predio predio, int numeroDoAndar) {

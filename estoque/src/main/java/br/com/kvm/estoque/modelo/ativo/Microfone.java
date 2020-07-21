@@ -8,6 +8,7 @@ public class Microfone {
 	private String tipo;
 	private String numeroDeSerie;
 	
+	@Deprecated
 	public Microfone() {}
 	
 	public Microfone(Long id, String marca, String modelo, String tipo, String numeroDeSerie) {

@@ -29,6 +29,7 @@ public class Empresa {
 	@OneToMany(mappedBy = "empresa")
 	private List<Predio> predios;
 
+	@Deprecated
 	public Empresa() {}
 
 	public Empresa(String nome, String cnpj) {

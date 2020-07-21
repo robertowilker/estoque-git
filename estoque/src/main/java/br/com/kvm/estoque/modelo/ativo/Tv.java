@@ -15,6 +15,7 @@ public class Tv {
 	private int polegadas;
 	private String numeroDeSerie;
 	
+	@Deprecated
 	public Tv() {}
 	
 	public Tv(String marca, String modelo, int polegadas, String numeroDeSerie) {
