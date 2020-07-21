@@ -26,7 +26,8 @@ public class Colaborador {
 	private String bairro;
 	private String complemento;
 	private String numeroDaCasa;
-	
+	// construtor para fins de infraestrutura
+	@Deprecated
 	public Colaborador() {}
 
 	public Colaborador(String nome, String nascimento, String cpf, String rg, String telefone, String email,

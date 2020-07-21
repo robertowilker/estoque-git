@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.kvm.estoque.controller.dto.ColaboradorDetalheDto;
 import br.com.kvm.estoque.controller.dto.ColaboradorDto;
+import br.com.kvm.estoque.controller.form.ColaboradorAtualizaForm;
 import br.com.kvm.estoque.controller.form.ColaboradorForm;
 import br.com.kvm.estoque.modelo.Colaborador;
 import br.com.kvm.estoque.repository.ColaboradorRepository;
@@ -58,7 +60,17 @@ public class ColaboradorController {
 		}
 	}
 	
-	public void atualiza() {}
+	@PutMapping("{id}")
+	public ResponseEntity<ColaboradorDto> atualiza(@PathVariable Long id, @RequestBody @Valid ColaboradorAtualizaForm form) {
+		Optional<Colaborador> optional = colaboradorRepository.findById(id);
+		
+		if(optional.isPresent()) {
+			Colaborador colaborador = form.atualiza(id, colaboradorRepository);
+			return ResponseEntity.ok(new ColaboradorDto(colaborador));
+		}else {
+			return ResponseEntity.notFound().build();
+		}
+	}
 	
 	public void deleta() {}
 }
